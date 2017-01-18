@@ -1,11 +1,19 @@
 /**
- * Created by Zhongyi on 5/1/16.
+ * Created by Zhongyi on May 1, 2016
  */
 'use strict';
 
 const path = require('path');
 const { BrowserWindow } = require('electron');
-const Common = require('../../common');
+const AppConfig = require('../../configuration');
+
+const lan = AppConfig.readSettings('language');
+let Common;
+if (lan === 'zh-CN') {
+  Common = require('../../common_cn');
+} else {
+  Common = require('../../common');
+}
 
 class SplashWindow {
   constructor() {
